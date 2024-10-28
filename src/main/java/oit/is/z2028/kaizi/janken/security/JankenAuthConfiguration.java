@@ -51,9 +51,9 @@ public class JankenAuthConfiguration {
     // ユーザ名，パスワード，ロールを指定してbuildする
     // このときパスワードはBCryptでハッシュ化されているため，{bcrypt}とつける
     UserDetails user1 = User.withUsername("user1")
-        .password("{bcrypt}$2y$10$ngxCDmuVK1TaGchiYQfJ1OAKkd64IH6skGsNw1sLabrTICOHPxC0e").roles("USER").build();
+        .password("{bcrypt}$2a$10$Ka.WO8ad/JVlq6brAIhriuUFMW7i6KFd4mErp6Och2VbKI/k05VGK").roles("USER").build();
     UserDetails user2 = User.withUsername("user2")
-        .password("{bcrypt}$2y$10$ngxCDmuVK1TaGchiYQfJ1OAKkd64IH6skGsNw1sLabrTICOHPxC0e").roles("USER").build();
+        .password("{bcrypt}$2a$10$Ka.WO8ad/JVlq6brAIhriuUFMW7i6KFd4mErp6Och2VbKI/k05VGK").roles("USER").build();
 
     // 生成したユーザをInMemoryUserDetailsManagerに渡す
     return new InMemoryUserDetailsManager(user1, user2);

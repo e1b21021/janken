@@ -8,9 +8,7 @@
 
     <h1>Janken GAME!</h1>
     <h3>エントリー</h3>
-    <ul th:each="entry : ${#authentication.name}">
-        <li th:text="${entry}"></li>
-    </ul>
+    <p>ログインしているユーザー: <span th:text="${#authentication.name}"></span></p>
 
     <p>Hi <span th:text="${username}"></span></p>
 

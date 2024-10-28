@@ -16,22 +16,30 @@ public class JankenController {
     @PostMapping("/enter")
     public String enter(@RequestParam String username, Model model) {
         model.addAttribute("username", username);
-        return "janken";
+        return "redirect:/janken"; // じゃんけん画面にリダイレクト
     }
 
     // じゃんけん対戦の処理
     @GetMapping("/janken")
-    public String janken(@RequestParam String hand, Model model) {
+    public String janken(@RequestParam(required = false) String hand, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); // ログインしているユーザー名を取得
 
-        String cpuHand = Janken.getCpuHand(); // CPUの手を取得 (最初はグー固定)
-        String result = Janken.judge(hand, cpuHand);
+        // 認証情報が存在しない場合、ログインページにリダイレクト
+        if (username == null || "anonymousUser".equals(username)) {
+            return "redirect:/login";
+        }
+
+        if (hand != null && !hand.isEmpty()) {
+            String cpuHand = Janken.getCpuHand(); // CPUの手を取得 (最初はグー固定)
+            String result = Janken.judge(hand, cpuHand);
+
+            model.addAttribute("userHand", hand);
+            model.addAttribute("cpuHand", cpuHand);
+            model.addAttribute("result", result);
+        }
 
         model.addAttribute("username", username);
-        model.addAttribute("userHand", hand);
-        model.addAttribute("cpuHand", cpuHand);
-        model.addAttribute("result", result);
         return "janken";
     }
 }
