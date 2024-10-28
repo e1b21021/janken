@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>じゃんけんアプリ - じゃんけん</title>
+    <title>Janken GAME!</title>
 </head>
 <body>
-    <p th:text="'Hi ' + ${username}"></p>
+    <a href="/logout">ログアウト</a>
+
+    <h1>Janken GAME!</h1>
+    <h3>エントリー</h3>
+    <p>ログインしているユーザー: <span th:text="${#authentication.name}"></span></p>
+
+    <p>Hi <span th:text="${username}"></span></p>
 
     <h3>じゃんけんをしてください:</h3>
     <ul>
-        <li><a th:href="'janken?hand=グー'">グー</a></li>
-        <li><a th:href="'janken?hand=チョキ'">チョキ</a></li>
-        <li><a th:href="'janken?hand=パー'">パー</a></li>
+        <li><a th:href="'/janken?hand=グー'">ぐー</a></li>
+        <li><a th:href="'/janken?hand=ちょき'">ちょき</a></li>
+        <li><a th:href="'/janken?hand=ぱー'">ぱー</a></li>
     </ul>
 
     <div th:if="${userHand != null}">
