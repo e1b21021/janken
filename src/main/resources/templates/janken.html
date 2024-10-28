@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>じゃんけんアプリ - じゃんけん</title>
+</head>
+<body>
+    <p th:text="'Hi ' + ${username}"></p>
+
+    <h3>じゃんけんをしてください:</h3>
+    <ul>
+        <li><a th:href="'janken?hand=グー'">グー</a></li>
+        <li><a th:href="'janken?hand=チョキ'">チョキ</a></li>
+        <li><a th:href="'janken?hand=パー'">パー</a></li>
+    </ul>
+
+    <div th:if="${userHand != null}">
+        <p>あなたの手: <span th:text="${userHand}"></span></p>
+        <p>相手の手: <span th:text="${cpuHand}"></span></p>
+        <p>結果: <span th:text="${result}"></span></p>
+    </div>
+</body>
+</html>
